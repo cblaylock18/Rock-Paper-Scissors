@@ -1,3 +1,3 @@
-# Tic-Tac-Toe
+# Rock-Paper-Scissors
 
-An initial Tic-Tac-Toe game using just the console
+An initial Rock-Paper-Scissors game using just the console
