@@ -27,8 +27,6 @@ function checkInput(playerSelectionCapitalized) {
         playerSelectionCapitalized === "Scissors"
     ) {
         return playerSelectionCapitalized;
-    } else if (playerSelectionCapitalized == null) {
-        console.log("Okay, we'll stop bugging you.");
     } else {
         let tryAgainPrompt = prompt(`That wasn't quite right, try again!`);
         let correctedInput = fixInput(tryAgainPrompt);
