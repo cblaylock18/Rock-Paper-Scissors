@@ -39,7 +39,7 @@ function winnerCheck(playerScore, computerScore, roundsPlayed) {
         return console.log("You win!");
     } else if (computerScore > playerScore) {
         return console.log("You lose!");
-    } else if (playerScore === computerScore && roundsPlayed === 5) {
+    } else if (playerScore === computerScore) {
         return console.log("It's a tie!");
     }
 }
@@ -128,113 +128,115 @@ function roundResult(result, playerSelectionCorrected, computerSelection) {
         : "Uh-oh. Something went wrong. Try again!";
 }
 
-function playGame() {
-    //round 1
+// function playGame() {
+//     //round 1
 
-    // define variables for the function scope
-    let playerScore = 0;
-    let computerScore = 0;
-    let roundsPlayed = 0;
-    // get the result of the round
-    let result = playRound();
-    if (result === "win") {
-        playerScore++;
-    } else if (result === "loss") {
-        computerScore++;
-    }
-    // stopping if something goes wrong
-    else if (result === "unsure") {
-        alert("Something went wrong. Refresh the page to try again.");
-        return;
-    }
-    // increment rounds
-    roundsPlayed++;
-    // output the overall score to the terminal
-    console.log(
-        `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-    );
+//     // define variables for the function scope
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     let roundsPlayed = 0;
+//     // get the result of the round
+//     let result = playRound();
+//     if (result === "win") {
+//         playerScore++;
+//     } else if (result === "loss") {
+//         computerScore++;
+//     }
+//     // stopping if something goes wrong
+//     else if (result === "unsure") {
+//         alert("Something went wrong. Refresh the page to try again.");
+//         return;
+//     }
+//     // increment rounds
+//     roundsPlayed++;
+//     // output the overall score to the terminal
+//     console.log(
+//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
+//     );
 
-    //round 2
-    // get the result of the round
-    result = playRound();
-    if (result === "win") {
-        playerScore++;
-    } else if (result === "loss") {
-        computerScore++;
-    }
-    // stopping if something goes wrong
-    else if (result === "unsure") {
-        alert("Something went wrong. Refresh the page to try again.");
-        return;
-    }
-    // increment rounds
-    roundsPlayed++;
-    // output the overall score to the terminal
-    console.log(
-        `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-    );
+//     // round 2
+//     // get the result of the round
+//     result = playRound();
+//     if (result === "win") {
+//         playerScore++;
+//     } else if (result === "loss") {
+//         computerScore++;
+//     }
+//     // stopping if something goes wrong
+//     else if (result === "unsure") {
+//         alert("Something went wrong. Refresh the page to try again.");
+//         return;
+//     }
+//     // increment rounds
+//     roundsPlayed++;
+//     // output the overall score to the terminal
+//     console.log(
+//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
+//     );
 
-    //round 3
-    // get the result of the round
-    result = playRound();
-    if (result === "win") {
-        playerScore++;
-    } else if (result === "loss") {
-        computerScore++;
-    }
-    // stopping if something goes wrong
-    else if (result === "unsure") {
-        alert("Something went wrong. Refresh the page to try again.");
-        return;
-    }
-    // increment rounds
-    roundsPlayed++;
-    // output the overall score to the terminal
-    console.log(
-        `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-    );
+//     //round 3
+//     // get the result of the round
+//     result = playRound();
+//     if (result === "win") {
+//         playerScore++;
+//     } else if (result === "loss") {
+//         computerScore++;
+//     }
+//     // stopping if something goes wrong
+//     else if (result === "unsure") {
+//         alert("Something went wrong. Refresh the page to try again.");
+//         return;
+//     }
+//     // increment rounds
+//     roundsPlayed++;
+//     // output the overall score to the terminal
+//     console.log(
+//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
+//     );
 
-    //round 4
-    // get the result of the round
-    result = playRound();
-    if (result === "win") {
-        playerScore++;
-    } else if (result === "loss") {
-        computerScore++;
-    }
-    // stopping if something goes wrong
-    else if (result === "unsure") {
-        alert("Something went wrong. Refresh the page to try again.");
-        return;
-    }
-    // increment rounds
-    roundsPlayed++;
-    // output the overall score to the terminal
-    console.log(
-        `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-    );
+//     //round 4
+//     // get the result of the round
+//     result = playRound();
+//     if (result === "win") {
+//         playerScore++;
+//     } else if (result === "loss") {
+//         computerScore++;
+//     }
+//     // stopping if something goes wrong
+//     else if (result === "unsure") {
+//         alert("Something went wrong. Refresh the page to try again.");
+//         return;
+//     }
+//     // increment rounds
+//     roundsPlayed++;
+//     // output the overall score to the terminal
+//     console.log(
+//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
+//     );
 
-    //round 5
-    // get the result of the round
-    result = playRound();
-    if (result === "win") {
-        playerScore++;
-    } else if (result === "loss") {
-        computerScore++;
-    }
-    // stopping if something goes wrong
-    else if (result === "unsure") {
-        alert("Something went wrong. Refresh the page to try again.");
-        return;
-    }
-    // increment rounds
-    roundsPlayed++;
-    // output the overall score to the terminal
-    console.log(
-        `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-    );
+//     //round 5
+//     // get the result of the round
+//     result = playRound();
+//     if (result === "win") {
+//         playerScore++;
+//     } else if (result === "loss") {
+//         computerScore++;
+//     }
+//     // stopping if something goes wrong
+//     else if (result === "unsure") {
+//         alert("Something went wrong. Refresh the page to try again.");
+//         return;
+//     }
+//     // increment rounds
+//     roundsPlayed++;
+//     // output the overall score to the terminal
+//     console.log(
+//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
+//     );
 
-    // check for winner after round 5
-    winnerCheck(playerScore, computerScore, roundsPlayed);
-}
-playGame();
+//     // check for winner after round 5
+//     winnerCheck(playerScore, computerScore, roundsPlayed);
+// }
+// playGame();
+
+selectionButtons = document.querySelectorAll(".btn");
