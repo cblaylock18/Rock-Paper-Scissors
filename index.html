@@ -4,18 +4,29 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rock-Paper-Scissors</title>
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>
     <body>
-        <div class="selection-buttons">
-            <div>
-                <button class="btn">Rock</button>
+        <div class="selections">
+            <div class="selection-btns">
+                <button id="Rock-btn">Rock</button>
             </div>
-            <div>
-                <button class="btn">Paper</button>
+            <div class="selection-btns">
+                <button id="Paper-btn">Paper</button>
             </div>
-            <div>
-                <button class="btn">Scissors</button>
+            <div class="selection-btns">
+                <button id="Scissors-btn">Scissors</button>
+            </div>
+        </div>
+        <div id="results">
+            <div class="score-overall">
+                <p class="score-title">Overall Score</p>
+                <p class="player">
+                    Player: <span class="score-player">0</span>
+                </p>
+                <p class="computer">
+                    Computer: <span class="score-computer">0</span>
+                </p>
             </div>
         </div>
     </body>

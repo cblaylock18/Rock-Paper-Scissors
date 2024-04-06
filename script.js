@@ -11,232 +11,129 @@ function getComputerChoice() {
         : "Error!";
 }
 
-//fixes the users input so the first letter is capital and the rest are lowercase
-function fixInput(playerSelection) {
-    return (
-        playerSelection.substr(0, 1).toUpperCase() +
-        playerSelection.slice(1).toLowerCase()
-    );
-}
-
-//prompts the user for a new input if the first one wasn't valid
-function checkInput(playerSelectionCapitalized) {
-    if (
-        playerSelectionCapitalized === "Rock" ||
-        playerSelectionCapitalized === "Paper" ||
-        playerSelectionCapitalized === "Scissors"
-    ) {
-        return playerSelectionCapitalized;
-    } else {
-        let tryAgainPrompt = prompt(`That wasn't quite right, try again!`);
-        let correctedInput = fixInput(tryAgainPrompt);
-        return checkInput(correctedInput);
-    }
-}
-
-function winnerCheck(playerScore, computerScore, roundsPlayed) {
+function winnerCheck(playerScore, computerScore) {
+    let overallResult = document.createElement("h1");
     if (playerScore > computerScore) {
-        return console.log("You win!");
+        overallResult.textContent = "You win!";
+        resultsDiv.appendChild(overallResult);
     } else if (computerScore > playerScore) {
-        return console.log("You lose!");
+        overallResult.textContent = "You lose!";
+        resultsDiv.appendChild(overallResult);
     } else if (playerScore === computerScore) {
-        return console.log("It's a tie!");
+        overallResult.textContent = "It's a tie!";
+        resultsDiv.appendChild(overallResult);
     }
+    resultsDiv.appendChild(playAgainButton);
+    playAgainButton.focus();
 }
 
-function playRound() {
-    // player inputs selection
-    let playerSelection = prompt("Type your choice! Rock, Paper, or Scissors?");
+function playRound(playerSelection) {
     // get computer selection
     let computerSelection = getComputerChoice();
-    //turn player input to sentence case
-    let playerSelectionCapitalized = fixInput(playerSelection);
-    let playerSelectionCorrected = checkInput(playerSelectionCapitalized);
     // set scope of result to the entire function
     let result = "";
     // output results of win, loss, or tie
     // tie first
-    if (playerSelectionCorrected === computerSelection) {
+    if (playerSelection === computerSelection) {
         result = "tie";
     }
     // Player rock beats computer scissors
-    else if (
-        playerSelectionCorrected === "Rock" &&
-        computerSelection === "Scissors"
-    ) {
+    else if (playerSelection === "Rock" && computerSelection === "Scissors") {
         result = "win";
     }
 
     // Player scissors beats computer paper
-    else if (
-        playerSelectionCorrected === "Scissors" &&
-        computerSelection === "Paper"
-    ) {
+    else if (playerSelection === "Scissors" && computerSelection === "Paper") {
         result = "win";
     }
 
     // Player rock beats computer scissors
-    else if (
-        playerSelectionCorrected === "Paper" &&
-        computerSelection === "Rock"
-    ) {
+    else if (playerSelection === "Paper" && computerSelection === "Rock") {
         result = "win";
     }
 
     // Computer rock beats player scissors
-    else if (
-        computerSelection === "Rock" &&
-        playerSelectionCorrected === "Scissors"
-    ) {
+    else if (computerSelection === "Rock" && playerSelection === "Scissors") {
         result = "loss";
     }
 
     // Computer scissors beats player paper
-    else if (
-        computerSelection === "Scissors" &&
-        playerSelectionCorrected === "Paper"
-    ) {
+    else if (computerSelection === "Scissors" && playerSelection === "Paper") {
         result = "loss";
     }
 
     // Computer paper beats player rock
-    else if (
-        computerSelection === "Paper" &&
-        playerSelectionCorrected === "Rock"
-    ) {
+    else if (computerSelection === "Paper" && playerSelection === "Rock") {
         result = "loss";
     }
     // tell player if input is invalid
     else {
         result = "unsure";
     }
-    console.log(
-        roundResult(result, playerSelectionCorrected, computerSelection)
+    let currentRoundResult = document.createElement("p");
+    currentRoundResult.textContent = roundResult(
+        result,
+        playerSelection,
+        computerSelection
     );
-    return result;
+
+    if (result === "win") {
+        scorePlayer.textContent++;
+        roundsPlayed++;
+    } else if (result === "loss") {
+        scoreComputer.textContent++;
+        roundsPlayed++;
+    } else {
+        roundsPlayed++;
+    }
+
+    resultsDiv.appendChild(currentRoundResult);
+
+    if (roundsPlayed === 5) {
+        winnerCheck(scorePlayer.textContent, scoreComputer.textContent);
+    }
 }
 
 // create a function to output the result of each round
-function roundResult(result, playerSelectionCorrected, computerSelection) {
+function roundResult(result, playerSelection, computerSelection) {
     // output the result
     return result === "win"
-        ? `You win! ${playerSelectionCorrected} beats ${computerSelection}`
+        ? `You win! ${playerSelection} beats ${computerSelection}`
         : result === "loss"
-        ? `You lose! ${computerSelection} beats ${playerSelectionCorrected}`
+        ? `You lose! ${computerSelection} beats ${playerSelection}`
         : result === "tie"
-        ? `It's a tie! ${playerSelectionCorrected} equals ${computerSelection}`
+        ? `It's a tie! ${playerSelection} equals ${computerSelection}`
         : "Uh-oh. Something went wrong. Try again!";
 }
 
-// function playGame() {
-//     //round 1
+function reset() {
+    scorePlayer.textContent = 0;
+    scoreComputer.textContent = 0;
+    roundsPlayed = 0;
+    while (resultsDiv.childNodes.length > 3) {
+        resultsDiv.removeChild(resultsDiv.lastChild);
+    }
+}
 
-//     // define variables for the function scope
-//     let playerScore = 0;
-//     let computerScore = 0;
-//     let roundsPlayed = 0;
-//     // get the result of the round
-//     let result = playRound();
-//     if (result === "win") {
-//         playerScore++;
-//     } else if (result === "loss") {
-//         computerScore++;
-//     }
-//     // stopping if something goes wrong
-//     else if (result === "unsure") {
-//         alert("Something went wrong. Refresh the page to try again.");
-//         return;
-//     }
-//     // increment rounds
-//     roundsPlayed++;
-//     // output the overall score to the terminal
-//     console.log(
-//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-//     );
+const rockButton = document.querySelector("#Rock-btn");
+rockButton.addEventListener("click", () => playRound("Rock"));
 
-//     // round 2
-//     // get the result of the round
-//     result = playRound();
-//     if (result === "win") {
-//         playerScore++;
-//     } else if (result === "loss") {
-//         computerScore++;
-//     }
-//     // stopping if something goes wrong
-//     else if (result === "unsure") {
-//         alert("Something went wrong. Refresh the page to try again.");
-//         return;
-//     }
-//     // increment rounds
-//     roundsPlayed++;
-//     // output the overall score to the terminal
-//     console.log(
-//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-//     );
+const paperButton = document.querySelector("#Paper-btn");
+paperButton.addEventListener("click", () => playRound("Paper"));
 
-//     //round 3
-//     // get the result of the round
-//     result = playRound();
-//     if (result === "win") {
-//         playerScore++;
-//     } else if (result === "loss") {
-//         computerScore++;
-//     }
-//     // stopping if something goes wrong
-//     else if (result === "unsure") {
-//         alert("Something went wrong. Refresh the page to try again.");
-//         return;
-//     }
-//     // increment rounds
-//     roundsPlayed++;
-//     // output the overall score to the terminal
-//     console.log(
-//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-//     );
+const scissorsButton = document.querySelector("#Scissors-btn");
+scissorsButton.addEventListener("click", () => playRound("Scissors"));
 
-//     //round 4
-//     // get the result of the round
-//     result = playRound();
-//     if (result === "win") {
-//         playerScore++;
-//     } else if (result === "loss") {
-//         computerScore++;
-//     }
-//     // stopping if something goes wrong
-//     else if (result === "unsure") {
-//         alert("Something went wrong. Refresh the page to try again.");
-//         return;
-//     }
-//     // increment rounds
-//     roundsPlayed++;
-//     // output the overall score to the terminal
-//     console.log(
-//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-//     );
+const resultsDiv = document.querySelector("#results");
 
-//     //round 5
-//     // get the result of the round
-//     result = playRound();
-//     if (result === "win") {
-//         playerScore++;
-//     } else if (result === "loss") {
-//         computerScore++;
-//     }
-//     // stopping if something goes wrong
-//     else if (result === "unsure") {
-//         alert("Something went wrong. Refresh the page to try again.");
-//         return;
-//     }
-//     // increment rounds
-//     roundsPlayed++;
-//     // output the overall score to the terminal
-//     console.log(
-//         `Rounds Played: ${roundsPlayed}\nThe current score is:\nPlayer:${playerScore}\nComputer:${computerScore}`
-//     );
+const scorePlayer = document.querySelector(".score-player");
+const scoreComputer = document.querySelector(".score-computer");
 
-//     // check for winner after round 5
-//     winnerCheck(playerScore, computerScore, roundsPlayed);
-// }
-// playGame();
+let roundsPlayed = 0;
 
-selectionButtons = document.querySelectorAll(".btn");
+//create play again button
+const playAgainButton = document.createElement("button");
+playAgainButton.textContent = "Play Again?";
+playAgainButton.addEventListener("click", () => {
+    reset();
+});
