@@ -76,6 +76,7 @@ function playRound(playerSelection) {
         playerSelection,
         computerSelection
     );
+    resultsDiv.appendChild(currentRoundResult);
 
     if (result === "win") {
         scorePlayer.textContent++;
@@ -86,8 +87,6 @@ function playRound(playerSelection) {
     } else {
         roundsPlayed++;
     }
-
-    resultsDiv.appendChild(currentRoundResult);
 
     if (roundsPlayed === 5) {
         winnerCheck(scorePlayer.textContent, scoreComputer.textContent);
